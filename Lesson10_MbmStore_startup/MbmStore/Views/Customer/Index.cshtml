@@ -1,0 +1,18 @@
+﻿@using MbmStore.Models
+@model IEnumerable<Customer>;
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<h2>Customers</h2>
+
+@foreach (Customer c in Model)
+{
+    <p>
+        @c.Firstname  @c.Lastname <br />
+        @c.Address <br />
+        @c.Zip @c.City
+    </p>
+
+}
+
