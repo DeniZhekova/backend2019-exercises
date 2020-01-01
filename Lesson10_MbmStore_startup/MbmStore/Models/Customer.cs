@@ -13,7 +13,6 @@ namespace MbmStore.Models
         public string Zip { get; set; }
         public string City { get; set; }
         public string Email { get; set; }
-        [Column(TypeName = "datetime2")]
         public DateTime Birthdate { get; set; }
 
 

@@ -13,7 +13,6 @@ namespace MbmStore.Models
 
         public int InvoiceId { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice {
             get {

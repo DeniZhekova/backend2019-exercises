@@ -13,29 +13,29 @@ namespace MbmStore.Areas.Admin.Controllers
     [Area("Admin")]
     public class BookController : Controller
     {
-        private readonly MbmStoreContext _context;
+        private readonly IBookRepository bookRepo;
 
-        public BookController(MbmStoreContext context)
+        public BookController(IBookRepository bookRepository)
         {
-            _context = context;
+            bookRepo = bookRepository;
         }
 
         // GET: Admin/Books
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Books.ToListAsync());
+            return View(await bookRepo.GetBookList());
         }
 
         // GET: Admin/Books/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Books
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var book = bookRepo.GetBookById(id.Value);
+
             if (book == null)
             {
                 return NotFound();
@@ -55,26 +55,25 @@ namespace MbmStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Author,Publisher,Published,ISBN,ProductId,Title,Price,ImageUrl,Category,CreatedDate")] Book book)
+        public IActionResult Create([Bind("Author,Publisher,Published,ISBN,ProductId,Title,Price,ImageUrl,Category,CreatedDate")] Book book)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(book);
-                await _context.SaveChangesAsync();
+                bookRepo.SaveBook(book);
                 return RedirectToAction(nameof(Index));
             }
             return View(book);
         }
 
         // GET: Admin/Books/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Books.FindAsync(id);
+            var book = bookRepo.GetBookById(id.Value);
             if (book == null)
             {
                 return NotFound();
@@ -87,7 +86,7 @@ namespace MbmStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Author,Publisher,Published,ISBN,ProductId,Title,Price,ImageUrl,Category,CreatedDate")] Book book)
+        public ActionResult Edit(int id, [Bind("Author,Publisher,Published,ISBN,ProductId,Title,Price,ImageUrl,Category,CreatedDate")] Book book)
         {
             if (id != book.ProductId)
             {
@@ -98,12 +97,11 @@ namespace MbmStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(book);
-                    await _context.SaveChangesAsync();
+                    bookRepo.SaveBook(book);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BookExists(book.ProductId))
+                    if (!bookRepo.BookExists(book.ProductId))
                     {
                         return NotFound();
                     }
@@ -118,16 +116,14 @@ namespace MbmStore.Areas.Admin.Controllers
         }
 
         // GET: Admin/Books/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Books
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (book == null)
+            var book = bookRepo.GetBookById(id.Value); if (book == null)
             {
                 return NotFound();
             }
@@ -138,17 +134,11 @@ namespace MbmStore.Areas.Admin.Controllers
         // POST: Admin/Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var book = await _context.Books.FindAsync(id);
-            _context.Books.Remove(book);
-            await _context.SaveChangesAsync();
+            bookRepo.DeleteBook(id); 
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BookExists(int id)
-        {
-            return _context.Books.Any(e => e.ProductId == id);
-        }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace MbmStore
 {
@@ -26,47 +27,54 @@ namespace MbmStore
         {
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddMvc();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson();
             services.AddMemoryCache();
             services.AddSession();
             services.AddDbContext<MbmStoreContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MbmStoreContext")));
+            services.AddScoped<IBookRepository, EFBookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseStatusCodePages();
+            }
+            else 
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseStaticFiles();
             app.UseSession();
+            app.UseRouting();
             
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
 
-                 routes.MapRoute(
+                 endpoints.MapControllerRoute(
                     name : "areas",
-                    template : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    pattern : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
 
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: null,
-                    template: "Catalogue/{category}/Page{page:int}",
+                    pattern: "Catalogue/{category}/Page{page:int}",
                     defaults: new
                     {
                         controller = "Catalogue",
                         action = "Index" }
                     );
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: null,
-                    template: "Page{page:int}",
+                    pattern: "Page{page:int}",
                     defaults: new
                     {
                         controller = "Catalogue",
@@ -74,9 +82,9 @@ namespace MbmStore
                         productPage = 1
                     });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: null,
-                    template: "Catalogue/{category}",
+                    pattern: "Catalogue/{category}",
                     defaults: new
                     {
                         controller = "Catalogue",
@@ -84,9 +92,9 @@ namespace MbmStore
                         productPage = 1
                     });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: null,
-                    template: "",
+                    pattern: "",
                     defaults: new
                     {
                         controller = "Catalogue",
@@ -94,9 +102,9 @@ namespace MbmStore
                         productPage = 1
                     });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Catalogue}/{action=Index}/{id?}");
+                    pattern: "{controller=Catalogue}/{action=Index}/{id?}");
                 });
         }
     }

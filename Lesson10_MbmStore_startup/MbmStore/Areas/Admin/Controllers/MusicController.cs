@@ -63,6 +63,7 @@ namespace MbmStore.Areas.Admin.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    musicCD.CreatedDate = DateTime.Now;
                     _context.Add(musicCD);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -111,6 +112,7 @@ namespace MbmStore.Areas.Admin.Controllers
                 try
                 {
                     _context.Update(musicCD);
+                    _context.Entry<MusicCD>(musicCD).Property(x => x.CreatedDate).IsModified = false;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

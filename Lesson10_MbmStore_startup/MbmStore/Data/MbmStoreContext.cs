@@ -23,15 +23,41 @@ namespace MbmStore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Configure Invoice Column
+            modelBuilder.Entity<Invoice>()
+            .Property(p => p.OrderDate)
+            .HasColumnType("datetime2");
+
+            //Configure Customer Column
+            modelBuilder.Entity<Customer>()
+            .Property(p => p.Birthdate)
+            .HasColumnType("datetime2");
+
+            //Configure Product Column
+            modelBuilder.Entity<Product>()
+            .Property(p => p.CreatedDate)
+            .HasColumnType("datetime2");
+
+            //decimal precision
+            modelBuilder.Entity<Product>()
+            .Property(p => p.Price)
+            .HasColumnType("decimal(18,2)");
+
 
             modelBuilder.Entity<Customer>().ToTable("Customer");
             modelBuilder.Entity<Phone>().ToTable("Phone");
             modelBuilder.Entity<Invoice>().ToTable("Invoice");
             modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
             modelBuilder.Entity<Product>().ToTable("Product");
-            modelBuilder.Entity<Book>().ToTable("Book");
-            modelBuilder.Entity<Movie>().ToTable("Movie");
-            modelBuilder.Entity<MusicCD>().ToTable("MusicCD");
+            /*At the moment, EF Core only supports the table-per-hierarchy (TPH) pattern. 
+             * TPH uses a single table to store the data for all types in the hierarchy, 
+             * and a discriminator column is used to identify which type each row represents.
+             * The table-per-type (TPT) and table-per-concrete-type (TPC), which are supported by EF6, 
+             * are not yet supported by EF Core. TPT is a major feature planned for EF Core 5.0.
+             */
+            //modelBuilder.Entity<Book>().ToTable("Book");
+            //modelBuilder.Entity<Movie>().ToTable("Movie");
+            //modelBuilder.Entity<MusicCD>().ToTable("MusicCD");
 
             modelBuilder.Entity<Book>().HasData(
                     new Book { ProductId = 1, Title = "A Hard Day's Write: The Stories Behind Every Beatles Song ", Author = "Steve Turner", Price = 150.00M, Publisher = "It Books", Published = 2005, ISBN = "978-0060844097", ImageUrl = "A_Hard_Days_Write.jpg", Category = "Book" },
@@ -42,7 +68,8 @@ namespace MbmStore.Data
             modelBuilder.Entity<MusicCD>().HasData(
                  new MusicCD
                  {
-                     ProductId = 3, Title = "Abbey Road (Remastered)", 
+                     ProductId = 3,
+                     Title = "Abbey Road (Remastered)",
                      Artist = "Beatles",
                      Price = 128.00M,
                      Released = 2009,
@@ -113,12 +140,14 @@ namespace MbmStore.Data
                     new Invoice { InvoiceId = 2, OrderDate = new DateTime(2018, 09, 18), CustomerId = 2 }
             );
 
-           modelBuilder.Entity<OrderItem>().HasData(
-                   new OrderItem { OrderItemId = 1, ProductId = 7, Quantity = 1, InvoiceId = 1 },
-                   new OrderItem { OrderItemId = 2, ProductId = 2, Quantity = 1, InvoiceId = 1 },
-                   new OrderItem { OrderItemId = 3, ProductId = 1, Quantity = 1, InvoiceId = 2 },
-                   new OrderItem { OrderItemId = 4, ProductId = 3, Quantity = 1, InvoiceId = 2 }
-           );
+            modelBuilder.Entity<OrderItem>().HasData(
+                    new OrderItem { OrderItemId = 1, ProductId = 7, Quantity = 1, InvoiceId = 1 },
+                    new OrderItem { OrderItemId = 2, ProductId = 2, Quantity = 1, InvoiceId = 1 },
+                    new OrderItem { OrderItemId = 3, ProductId = 1, Quantity = 1, InvoiceId = 2 },
+                    new OrderItem { OrderItemId = 4, ProductId = 3, Quantity = 1, InvoiceId = 2 }
+            );
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

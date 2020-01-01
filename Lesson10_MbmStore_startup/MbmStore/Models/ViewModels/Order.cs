@@ -6,7 +6,9 @@ namespace MbmStore.Models.ViewModels
     {
         public int OrderID { get; set; }
         public ICollection<CartLine> Lines { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public string Line1 { get; set; }
         public string Line2 { get; set; }
         public string Line3 { get; set; }
