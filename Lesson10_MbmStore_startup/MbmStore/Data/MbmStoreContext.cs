@@ -43,6 +43,10 @@ namespace MbmStore.Data
             .Property(p => p.Price)
             .HasColumnType("decimal(18,2)");
 
+            modelBuilder.Entity<OrderItem>()
+            .Property(p => p.Price)
+            .HasColumnType("decimal(18,2)");
+
 
             modelBuilder.Entity<Customer>().ToTable("Customer");
             modelBuilder.Entity<Phone>().ToTable("Phone");

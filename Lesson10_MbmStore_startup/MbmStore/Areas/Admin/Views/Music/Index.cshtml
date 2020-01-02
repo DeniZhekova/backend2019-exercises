@@ -10,12 +10,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by title or artist: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Artist)
-            </th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ArtistSortParm"]">@Html.DisplayNameFor(model => model.Artist)</a>
+</th>
             <th>
                 @Html.DisplayNameFor(model => model.Label)
             </th>
@@ -23,8 +34,8 @@
                 @Html.DisplayNameFor(model => model.Released)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
+</th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>

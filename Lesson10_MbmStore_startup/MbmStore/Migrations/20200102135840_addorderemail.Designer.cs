@@ -4,14 +4,16 @@ using MbmStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MbmStore.Migrations
 {
     [DbContext(typeof(MbmStoreContext))]
-    partial class MbmStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20200102135840_addorderemail")]
+    partial class addorderemail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

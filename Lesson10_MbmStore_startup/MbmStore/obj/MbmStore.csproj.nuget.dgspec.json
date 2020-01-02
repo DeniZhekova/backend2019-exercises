@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ILKOKILLA\\source\\repos\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj": {}
+    "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ILKOKILLA\\source\\repos\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj": {
+    "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ILKOKILLA\\source\\repos\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj",
+        "projectUniqueName": "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj",
         "projectName": "MbmStore",
-        "projectPath": "C:\\Users\\ILKOKILLA\\source\\repos\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj",
+        "projectPath": "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj",
         "packagesPath": "C:\\Users\\ILKOKILLA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ILKOKILLA\\source\\repos\\Lesson10_MbmStore_startup\\MbmStore\\obj\\",
+        "outputPath": "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

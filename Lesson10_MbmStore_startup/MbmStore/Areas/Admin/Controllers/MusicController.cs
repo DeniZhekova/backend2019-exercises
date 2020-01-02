@@ -22,9 +22,36 @@ namespace MbmStore.Areas.Admin.Controllers
         }
 
         // GET: Admin/Music
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.MusicCDs.ToListAsync());
+            ViewData["ArtistSortParm"] = String.IsNullOrEmpty(sortOrder) ? "artist_desc" : "";
+            ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
+            var musicCDs = from s in _context.MusicCDs
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                musicCDs = musicCDs.Where(s => s.Artist.Contains(searchString)
+                                       || s.Title.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "artist_desc":
+                    musicCDs = musicCDs.OrderByDescending(s => s.Artist);
+                    break;
+                case "Title":
+                    musicCDs = musicCDs.OrderBy(s => s.Title);
+                    break;
+                case "title_desc":
+                    musicCDs = musicCDs.OrderByDescending(s => s.Title);
+                    break;
+                default:
+                    musicCDs = musicCDs.OrderBy(s => s.Artist);
+                    break;
+            }
+            return View(await musicCDs.AsNoTracking().ToListAsync());
+            //return View(await _context.MusicCDs.ToListAsync());
         }
 
         // GET: Admin/Music/Details/5

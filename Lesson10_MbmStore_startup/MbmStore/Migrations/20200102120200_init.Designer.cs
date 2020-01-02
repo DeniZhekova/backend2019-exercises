@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MbmStore.Migrations
 {
     [DbContext(typeof(MbmStoreContext))]
-    [Migration("20200101104215_init")]
+    [Migration("20200102120200_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,6 +120,9 @@ namespace MbmStore.Migrations
                     b.Property<int>("InvoiceId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -139,6 +142,7 @@ namespace MbmStore.Migrations
                         {
                             OrderItemId = 1,
                             InvoiceId = 1,
+                            Price = 0m,
                             ProductId = 7,
                             Quantity = 1
                         },
@@ -146,6 +150,7 @@ namespace MbmStore.Migrations
                         {
                             OrderItemId = 2,
                             InvoiceId = 1,
+                            Price = 0m,
                             ProductId = 2,
                             Quantity = 1
                         },
@@ -153,6 +158,7 @@ namespace MbmStore.Migrations
                         {
                             OrderItemId = 3,
                             InvoiceId = 2,
+                            Price = 0m,
                             ProductId = 1,
                             Quantity = 1
                         },
@@ -160,6 +166,7 @@ namespace MbmStore.Migrations
                         {
                             OrderItemId = 4,
                             InvoiceId = 2,
+                            Price = 0m,
                             ProductId = 3,
                             Quantity = 1
                         });

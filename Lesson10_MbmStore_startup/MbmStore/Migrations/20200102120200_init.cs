@@ -123,6 +123,7 @@ namespace MbmStore.Migrations
                     OrderItemId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ProductId = table.Column<int>(nullable: false),
                     InvoiceId = table.Column<int>(nullable: false)
                 },
@@ -230,13 +231,13 @@ namespace MbmStore.Migrations
 
             migrationBuilder.InsertData(
                 table: "OrderItem",
-                columns: new[] { "OrderItemId", "InvoiceId", "ProductId", "Quantity" },
+                columns: new[] { "OrderItemId", "InvoiceId", "Price", "ProductId", "Quantity" },
                 values: new object[,]
                 {
-                    { 1, 1, 7, 1 },
-                    { 2, 1, 2, 1 },
-                    { 3, 2, 1, 1 },
-                    { 4, 2, 3, 1 }
+                    { 1, 1, 0m, 7, 1 },
+                    { 2, 1, 0m, 2, 1 },
+                    { 3, 2, 0m, 1, 1 },
+                    { 4, 2, 0m, 3, 1 }
                 });
 
             migrationBuilder.CreateIndex(
