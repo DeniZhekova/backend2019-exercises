@@ -1,31 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj": {}
+    "/Users/deni/Documents/GitHub/backend2019-exercises/Lesson10_MbmStore_startup/MbmStore/MbmStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj": {
+    "/Users/deni/Documents/GitHub/backend2019-exercises/Lesson10_MbmStore_startup/MbmStore/MbmStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj",
+        "projectUniqueName": "/Users/deni/Documents/GitHub/backend2019-exercises/Lesson10_MbmStore_startup/MbmStore/MbmStore.csproj",
         "projectName": "MbmStore",
-        "projectPath": "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\MbmStore.csproj",
-        "packagesPath": "C:\\Users\\ILKOKILLA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ILKOKILLA\\Documents\\GitHub\\backend2019-exercises\\Lesson10_MbmStore_startup\\MbmStore\\obj\\",
+        "projectPath": "/Users/deni/Documents/GitHub/backend2019-exercises/Lesson10_MbmStore_startup/MbmStore/MbmStore.csproj",
+        "packagesPath": "/Users/deni/.nuget/packages/",
+        "outputPath": "/Users/deni/Documents/GitHub/backend2019-exercises/Lesson10_MbmStore_startup/MbmStore/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ILKOKILLA\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/deni/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -83,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
         }
       }
     }

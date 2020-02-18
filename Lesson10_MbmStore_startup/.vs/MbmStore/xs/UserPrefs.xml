@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{67F44DCF-B455-40B5-9953-E836246B1627}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MbmStore/ScaffoldingReadMe.txt">
+    <Files>
+      <File FileName="MbmStore/ScaffoldingReadMe.txt" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MbmStore" expanded="True">
+            <Node name="MbmStore" expanded="True">
+              <Node name="ScaffoldingReadMe.txt" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MbmStore PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
